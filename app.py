@@ -2,6 +2,7 @@ from flask import Flask
 from datetime import datetime
 import re
 import os.path as path
+import json
 
 app = Flask(__name__)
 
@@ -30,9 +31,13 @@ def getFile(code):
     if match_object:
         clean_name = match_object.group(0)
     else:
-        clean_name = "default.txt"
-    file = path.join("files", f"{clean_name}.json")
-    return Flask.send_file(file)
+        clean_name = "default.json"
+
+    file_path = path.join("files", f"{clean_name}.json")
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+    return data
     
 if __name__ == "__main__":
     app.run()
+    
