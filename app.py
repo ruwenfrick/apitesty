@@ -31,7 +31,7 @@ def getFile(code):
     if match_object:
         clean_name = match_object.group(0)
     else:
-        clean_name = "default.json"
+        clean_name = "default"
 
     file_path = path.join("files", f"{clean_name}.json")
     with open(file_path, 'r') as file:
@@ -40,4 +40,3 @@ def getFile(code):
     
 if __name__ == "__main__":
     app.run()
-    
