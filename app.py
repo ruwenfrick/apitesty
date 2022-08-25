@@ -1,5 +1,4 @@
 from flask import Flask
-from datetime import datetime
 import re
 import os.path as path
 import json
@@ -12,9 +11,6 @@ def home():
 
 @app.route("/hello/<name>")
 def hello_there(name):
-    now = datetime.now()
-    formatted_now = now.strftime("%A, %d %B, %Y at %X")
-
     match_object = re.match("[a-zA-Z]+", name)
 
     if match_object:
@@ -22,7 +18,7 @@ def hello_there(name):
     else:
         clean_name = "Friend"
 
-    content = "Hello there, " + clean_name + "! It's " + formatted_now
+    content = "Hello there, " + clean_name
     return content
 
 @app.route("/files/<code>")
